@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: stat / infographic  (data emphasis)
+  RECIPE: one large figure dominates + a one-line meaning + the SOURCE.
+          Source is mandatory on a stat card (factual-accuracy probe).
+  Tokens: {{INDEX}} {{TOTAL}} {{KICKER}} {{FIGURE}} {{UNIT}} {{MEANING}}
+          {{SOURCE}} {{HANDLE}} {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}}; }
+  .stat-safe { justify-content: center; }
+  .stat-fig { display: flex; align-items: baseline; gap: 8px; margin: 12px 0 8px; }
+  .stat-meaning { margin-top: 28px; font-weight: 700; font-size: 56px;
+                  line-height: 1.32; letter-spacing: -0.02em; word-break: keep-all; }
+  .stat-source { margin-top: 48px; font-weight: 500; font-size: 30px;
+                 color: var(--ink-soft); }
+  .stat-source::before { content: "출처 "; color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe stat-safe">
+      <div class="kicker">{{KICKER}}</div>
+      <div class="stat-fig">
+        <span class="figure">{{FIGURE}}</span>
+        <span class="figure unit">{{UNIT}}</span>
+      </div>
+      <p class="stat-meaning">{{MEANING}}</p>
+      <p class="stat-source">{{SOURCE}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Playwright
+test-results/
+playwright-report/
+
+# OS / editor junk
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Runtime working dirs (skill writes artifacts into the user's project, not here)
+card-news/

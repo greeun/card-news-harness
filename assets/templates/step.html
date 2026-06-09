@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: step  ("OO하는 법" procedure)
+  RECIPE: STEP n label + progress dots + action headline + how-to body.
+  Tokens: {{INDEX}} {{TOTAL}} {{STEPLABEL}} {{HEADLINE}} {{BODY}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+  Note: {{DOTS}} is a small HTML run of <i class="dot on"></i>/<i class="dot"></i>
+        the Generator builds from INDEX/TOTAL (on = done/current).
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}}; }
+  .step-safe { justify-content: center; }
+  .step-tag { display: inline-flex; align-items: center; gap: 18px;
+              align-self: flex-start; padding: 16px 32px; border-radius: 999px;
+              background: color-mix(in srgb, var(--accent) 12%, transparent);
+              color: var(--accent); font-weight: 800; font-size: 36px;
+              letter-spacing: 0.04em; }
+  .dots { display: flex; gap: 14px; margin: 40px 0 8px; }
+  .dot { width: 26px; height: 26px; border-radius: 50%;
+         background: var(--line); display: inline-block; }
+  .dot.on { background: var(--accent); }
+  .step-head { margin-top: 16px; }
+  .step-body { margin-top: 36px; max-width: 820px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe step-safe">
+      <span class="step-tag">{{STEPLABEL}}</span>
+      <div class="dots">{{DOTS}}</div>
+      <h2 class="headline step-head">{{HEADLINE}}</h2>
+      <p class="body step-body">{{BODY}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

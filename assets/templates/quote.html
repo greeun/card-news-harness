@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: quote / key sentence  (quote or one-line summary)
+  RECIPE: large type + lots of whitespace. One sentence carries the card.
+          Attribution under the quote when it is a real quote.
+  Tokens: {{INDEX}} {{TOTAL}} {{QUOTE}} {{ATTRIB}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}};
+          background: var(--accent-2); color: #fff; }
+  .quote-safe { justify-content: center; }
+  .quote-mark { font-weight: 900; font-size: 200px; line-height: 0.6;
+                color: color-mix(in srgb, #fff 26%, transparent); height: 120px; }
+  .quote-text { margin-top: 12px; font-weight: 800; font-size: 76px;
+                line-height: 1.34; letter-spacing: -0.02em; word-break: keep-all; color: #fff; }
+  .quote-text .hl { background: linear-gradient(transparent 52%, var(--point) 52%);
+                    color: #fff; }
+  .quote-attrib { margin-top: 52px; font-weight: 600; font-size: 36px;
+                  color: color-mix(in srgb, #fff 78%, transparent); }
+  .quote-attrib::before { content: "— "; }
+  .card .page-indicator { color: color-mix(in srgb,#fff 75%,transparent); }
+  .card .page-indicator b { color: #fff; }
+  .card .brand-row { color: color-mix(in srgb,#fff 70%,transparent); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe quote-safe">
+      <div class="quote-mark">“</div>
+      <p class="quote-text">{{QUOTE}}</p>
+      <p class="quote-attrib">{{ATTRIB}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

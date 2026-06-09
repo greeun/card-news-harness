@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: list  ("N가지 방법/이유/꿀팁")
+  RECIPE: index badge + one-line core + sub-note. One list item = one card
+          (or 2-3 short items max). Keep core to a single line.
+  Tokens: {{INDEX}} {{TOTAL}} {{KICKER}} {{CORE}} {{SUBNOTE}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}}; }
+  .list-safe { justify-content: center; }
+  .list-row { display: flex; align-items: flex-start; gap: 44px; }
+  .list-core { font-weight: 800; font-size: 76px; line-height: 1.22;
+               letter-spacing: -0.02em; word-break: keep-all; }
+  .list-sub { margin-top: 36px; padding-left: 140px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe list-safe">
+      <div class="kicker">{{KICKER}}</div>
+      <div class="list-row">
+        <div class="index-badge">{{INDEX}}</div>
+        <div class="list-core">{{CORE}}</div>
+      </div>
+      <p class="body list-sub">{{SUBNOTE}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

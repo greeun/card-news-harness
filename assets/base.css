@@ -1,0 +1,309 @@
+/* ============================================================================
+   base.css — shared card-news styles for the card-news-harness skill
+   Every template (cover/list/step/compare/story/stat/quote/cta) links this file.
+   Card box is EXACTLY 1080×1350 (4:5). render.mjs sets the viewport to match and
+   screenshots the .card element, asserting 1080×1350.
+   ============================================================================ */
+
+/* ---- Pretendard, loaded locally for offline deterministic rendering -------- */
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+  src: url("./fonts/Pretendard-Black.woff2") format("woff2");
+}
+
+/* ---- Brand custom props (filled per run from brand.json) -------------------
+   The Generator overrides these inline on the .card (style="--accent:#...") or
+   in a per-card <style> block. Defaults below are a safe, neutral kit so a
+   template renders even before brand.json is applied.                         */
+:root {
+  --bg: #ffffff;          /* card background            */
+  --ink: #16181d;         /* primary text               */
+  --ink-soft: #565b66;    /* secondary text / sub-notes */
+  --accent: #2b59ff;      /* brand color 1 (primary)    */
+  --accent-2: #0e2a86;    /* brand color 2 (deep)       */
+  --point: #ff4d6d;       /* point/highlight color      */
+  --hl: #fff2a8;          /* 형광펜 highlight wash       */
+  --line: #e7e9ee;        /* hairline dividers          */
+
+  --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+          "Malgun Gothic", "Noto Sans KR", sans-serif;
+
+  /* 4:5 geometry. Safe-area = 96px outer padding on a 1080-wide card so no
+     text or key graphic touches the edge (Instagram/Threads crop tolerance).  */
+  --card-w: 1080px;
+  --card-h: 1350px;
+  --safe: 96px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: var(--card-w);
+  height: var(--card-h);
+  background: #d9dbe0;       /* neutral matte behind the card, never captured  */
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- The captured surface. render.mjs screenshots THIS element. ----------- */
+.card {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  background: var(--bg);
+  color: var(--ink);
+  overflow: hidden;          /* a true safety net; real content must fit       */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Safe-area content box: all copy lives inside this. ------------------------ */
+.safe {
+  position: absolute;
+  inset: var(--safe);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Page indicator util: N/총장수 on every body card --------------------- */
+.page-indicator {
+  position: absolute;
+  top: var(--safe);
+  right: var(--safe);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.page-indicator b { color: var(--accent); font-weight: 800; }
+
+/* ---- Brand row (logo / handle), optional --------------------------------- */
+.brand-row {
+  position: absolute;
+  bottom: var(--safe);
+  left: var(--safe);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--ink-soft);
+}
+
+/* ---- Emphasis utilities --------------------------------------------------- */
+/* 형광펜 하이라이트 — highlighter wash behind a phrase */
+.hl {
+  background: linear-gradient(transparent 52%, var(--hl) 52%);
+  padding: 0 0.06em;
+  border-radius: 2px;
+}
+/* 키워드 컬러 — accent-colored keyword */
+.kw { color: var(--accent); font-weight: 800; }
+/* 포인트 컬러 — point-colored keyword (use sparingly) */
+.pt { color: var(--point); font-weight: 800; }
+/* 밑줄 강조 — thick underline */
+.ul {
+  border-bottom: 0.14em solid var(--accent);
+  padding-bottom: 0.02em;
+}
+
+/* ---- Type scale helpers (card roles) -------------------------------------- */
+.kicker {            /* small label above a headline */
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.headline {          /* main card headline */
+  font-weight: 800;
+  font-size: 86px;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  word-break: keep-all;     /* Korean: break on word boundaries, not mid-eojeol */
+}
+.headline.big {      /* cover headline */
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1.18;
+}
+.body {              /* body copy */
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  word-break: keep-all;
+}
+.subnote {           /* fine print / caption */
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- Big figure (stat / number) ------------------------------------------ */
+.figure {
+  font-weight: 900;
+  font-size: 280px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+.figure .unit { font-size: 96px; font-weight: 800; color: var(--ink); }
+
+/* ---- Swipe cue (cover + body → next) ------------------------------------- */
+.swipe-cue {
+  position: absolute;
+  bottom: var(--safe);
+  right: var(--safe);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--accent);
+}
+.swipe-cue .arrow {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; font-weight: 800;
+}
+
+/* ---- Helpers used by specific archetypes ---------------------------------- */
+.spacer { flex: 1 1 auto; }     /* push content apart */
+.divider { height: 3px; background: var(--line); margin: 36px 0; }
+.index-badge {                  /* numbered badge for list/step */
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 96px; height: 96px;
+  border-radius: 24px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800; font-size: 52px;
+  flex: 0 0 auto;
+}
+
+/* ============================================================================
+   OPT-IN BACKGROUND TREATMENTS (additive — no existing rule changed)
+   ----------------------------------------------------------------------------
+   Pure CSS, offline-deterministic, on-palette (driven by --accent/--bg/--ink).
+   Add to the .card element, combinable: class="card bg-mesh bg-grain".
+   Layering: each treatment paints into the .card::before / .card::after
+   pseudo-layers (z-index:0), behind all content. Whenever ANY bg-* class is
+   present we lift the card's positioned content boxes to z-index:1 so text
+   stays crisp and fully above the texture. Subtle by design (low alpha) so
+   headline/figure/body contrast is preserved (WCAG-AA-ish).
+   ============================================================================ */
+
+/* Two stacked pseudo-layers per card: ::before = color/gradient field,
+   ::after = overlay texture (grain/dots). Both inert and behind content. */
+.bg-mesh::before, .bg-mesh--dark::before, .bg-glow::before,
+.bg-grain::after, .bg-dots::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Raise content above any opt-in background layer (only when a bg-* is set).
+   .safe / .page-indicator / .brand-row / .swipe-cue are ALL position:absolute
+   already (from their base rules above), so they are valid z-index contexts —
+   we only add z-index:1 here, without touching their positioning. */
+.bg-mesh > .safe, .bg-mesh--dark > .safe, .bg-glow > .safe,
+.bg-grain > .safe, .bg-dots > .safe,
+.bg-mesh > .page-indicator, .bg-mesh--dark > .page-indicator, .bg-glow > .page-indicator,
+.bg-grain > .page-indicator, .bg-dots > .page-indicator,
+.bg-mesh > .brand-row, .bg-mesh--dark > .brand-row, .bg-glow > .brand-row,
+.bg-grain > .brand-row, .bg-dots > .brand-row,
+.bg-mesh > .swipe-cue, .bg-mesh--dark > .swipe-cue, .bg-glow > .swipe-cue,
+.bg-grain > .swipe-cue, .bg-dots > .swipe-cue {
+  z-index: 1;
+}
+
+/* ---- .bg-mesh — soft coral+beige mesh, weighted to the TOP/empty area ------ */
+.bg-mesh::before {
+  background:
+    radial-gradient(60% 48% at 82% 8%,
+      color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+    radial-gradient(46% 40% at 14% 4%,
+      color-mix(in srgb, var(--accent) 12%, transparent), transparent 72%),
+    radial-gradient(70% 50% at 100% 30%,
+      color-mix(in srgb, var(--accent) 9%, transparent), transparent 75%),
+    radial-gradient(80% 60% at 0% 100%,
+      color-mix(in srgb, var(--bg) 0%, transparent), transparent 80%);
+}
+
+/* dark variant: coral glow on near-black, for the quote card --------------- */
+.bg-mesh--dark::before {
+  background:
+    radial-gradient(58% 46% at 84% 10%,
+      color-mix(in srgb, var(--accent) 30%, transparent), transparent 68%),
+    radial-gradient(50% 44% at 8% 78%,
+      color-mix(in srgb, var(--accent) 16%, transparent), transparent 72%),
+    radial-gradient(64% 52% at 50% 120%,
+      color-mix(in srgb, var(--point) 14%, transparent), transparent 76%);
+}
+
+/* ---- .bg-glow — one soft coral radial glow behind a focal area ------------- */
+.bg-glow::before {
+  background:
+    radial-gradient(44% 34% at 26% 42%,
+      color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%);
+}
+
+/* ---- .bg-dots — subtle dot grid (~30px spacing, low alpha) ----------------- */
+.bg-dots::after {
+  background-image:
+    radial-gradient(color-mix(in srgb, var(--ink) 6%, transparent) 1.6px, transparent 1.7px);
+  background-size: 30px 30px;
+  background-position: 0 0;
+}
+
+/* ---- .bg-grain — fine film grain via inline SVG feTurbulence (offline) ----- */
+.bg-grain::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+/* on the dark mesh card, grain reads better screened than multiplied */
+.bg-mesh--dark.bg-grain::after { mix-blend-mode: screen; opacity: 0.05; }

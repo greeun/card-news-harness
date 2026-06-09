@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: compare  (Before/After, ❌ vs ⭕)
+  RECIPE: two stacked panels (top = ❌/Before, bottom = ⭕/After) with color
+          contrast. Left/right also works; this template stacks for 4:5 height.
+  Tokens: {{INDEX}} {{TOTAL}} {{KICKER}}
+          {{BAD_LABEL}} {{BAD_TEXT}} {{GOOD_LABEL}} {{GOOD_TEXT}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}}; }
+  .cmp-safe { justify-content: center; gap: 36px; }
+  .cmp-panel { border-radius: 32px; padding: 56px 56px; }
+  .cmp-bad  { background: color-mix(in srgb, var(--point) 9%, var(--bg));
+              border: 3px solid color-mix(in srgb, var(--point) 38%, transparent); }
+  .cmp-good { background: color-mix(in srgb, var(--accent) 9%, var(--bg));
+              border: 3px solid color-mix(in srgb, var(--accent) 42%, transparent); }
+  .cmp-label { font-weight: 800; font-size: 40px; display: flex; align-items: center; gap: 16px; }
+  .cmp-bad .cmp-label  { color: var(--point); }
+  .cmp-good .cmp-label { color: var(--accent); }
+  .cmp-text { margin-top: 26px; font-weight: 700; font-size: 52px;
+              line-height: 1.32; letter-spacing: -0.02em; word-break: keep-all; color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe cmp-safe">
+      <div class="kicker">{{KICKER}}</div>
+      <div class="cmp-panel cmp-bad">
+        <div class="cmp-label">❌ {{BAD_LABEL}}</div>
+        <div class="cmp-text">{{BAD_TEXT}}</div>
+      </div>
+      <div class="cmp-panel cmp-good">
+        <div class="cmp-label">⭕ {{GOOD_LABEL}}</div>
+        <div class="cmp-text">{{GOOD_TEXT}}</div>
+      </div>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

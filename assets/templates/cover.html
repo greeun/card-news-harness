@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: cover (always card 1)
+  RECIPE: big number / question / shock stat + 1 message + swipe cue.
+  Generator fills tokens; pick ONE hook (number | question | stat) for {{HEADLINE}}.
+  Tokens: {{KICKER}} {{HEADLINE}} {{SUBLINE}} {{TOTAL}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}};
+          background:
+            radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+            var(--bg);
+  }
+  .cover-safe { justify-content: center; }
+  .cover-kicker { color: var(--accent); }
+  .cover-head { margin-top: 18px; }
+  .cover-sub  { margin-top: 40px; max-width: 760px; }
+  .accent-bar { width: 132px; height: 14px; background: var(--accent); border-radius: 8px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="safe cover-safe">
+      <div class="accent-bar"></div>
+      <div class="kicker cover-kicker" style="margin-top:36px">{{KICKER}}</div>
+      <h1 class="headline big cover-head">{{HEADLINE}}</h1>
+      <p class="body cover-sub">{{SUBLINE}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+    <div class="swipe-cue">넘겨보기 <span class="arrow">→</span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: cta  (always the LAST card)
+  RECIPE: save / follow / comment cue + SOURCE attribution. Both are mandatory
+          (last-card CTA+source probe). This is the only card with the indicator
+          shown as the final page (e.g. 8/8).
+  Tokens: {{INDEX}} {{TOTAL}} {{HEADLINE}} {{CTA1}} {{CTA2}} {{CTA3}}
+          {{SOURCE}} {{HANDLE}} {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}};
+          background:
+            radial-gradient(120% 80% at 0% 100%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 58%),
+            var(--bg); }
+  .cta-safe { justify-content: center; }
+  .cta-head { font-weight: 800; font-size: 84px; line-height: 1.2;
+              letter-spacing: -0.02em; word-break: keep-all; }
+  .cta-actions { margin-top: 56px; display: flex; flex-direction: column; gap: 26px; }
+  .cta-pill { display: flex; align-items: center; gap: 24px;
+              padding: 30px 40px; border-radius: 24px;
+              background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+              border: 2px solid color-mix(in srgb, var(--accent) 28%, transparent);
+              font-weight: 700; font-size: 42px; color: var(--ink); word-break: keep-all; }
+  .cta-pill .ico { width: 64px; height: 64px; border-radius: 16px;
+                   background: var(--accent); color: #fff; flex: 0 0 auto;
+                   display: flex; align-items: center; justify-content: center;
+                   font-size: 36px; }
+  .cta-source { margin-top: 52px; font-weight: 500; font-size: 30px; color: var(--ink-soft); }
+  .cta-source::before { content: "출처 "; color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe cta-safe">
+      <h2 class="cta-head">{{HEADLINE}}</h2>
+      <div class="cta-actions">
+        <div class="cta-pill"><span class="ico">🔖</span>{{CTA1}}</div>
+        <div class="cta-pill"><span class="ico">＋</span>{{CTA2}}</div>
+        <div class="cta-pill"><span class="ico">💬</span>{{CTA3}}</div>
+      </div>
+      <p class="cta-source">{{SOURCE}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>

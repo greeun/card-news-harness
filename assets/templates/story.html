@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  ARCHETYPE: story  (experience / empathy, 기승전결)
+  RECIPE: generous whitespace + rhythm. A short scene-setting line, a beat of
+          emphasis, and a turn. Lots of air; one feeling per card.
+  Tokens: {{INDEX}} {{TOTAL}} {{LEADIN}} {{HEADLINE}} {{TURN}} {{HANDLE}}
+          {{ACCENT}} {{ACCENT2}} {{POINT}} {{BG}} {{INK}}
+-->
+<link rel="stylesheet" href="../base.css">
+<style>
+  .card { --accent: {{ACCENT}}; --accent-2: {{ACCENT2}}; --point: {{POINT}};
+          --bg: {{BG}}; --ink: {{INK}};
+          background: linear-gradient(180deg, var(--bg) 0%,
+                      color-mix(in srgb, var(--accent) 5%, var(--bg)) 100%); }
+  .story-safe { justify-content: center; }
+  .story-lead { font-weight: 600; font-size: 42px; color: var(--ink-soft);
+                line-height: 1.5; word-break: keep-all; }
+  .story-head { margin-top: 44px; font-weight: 800; font-size: 80px;
+                line-height: 1.3; letter-spacing: -0.02em; word-break: keep-all; }
+  .story-turn { margin-top: 56px; font-weight: 700; font-size: 46px;
+                color: var(--accent); line-height: 1.45; word-break: keep-all; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="page-indicator"><b>{{INDEX}}</b>/{{TOTAL}}</div>
+    <div class="safe story-safe">
+      <p class="story-lead">{{LEADIN}}</p>
+      <h2 class="story-head">{{HEADLINE}}</h2>
+      <p class="story-turn">{{TURN}}</p>
+    </div>
+    <div class="brand-row">{{HANDLE}}</div>
+  </div>
+</body>
+</html>
