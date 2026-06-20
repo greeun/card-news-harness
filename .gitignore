@@ -13,3 +13,27 @@ playwright-report/
 
 # Runtime working dirs (skill writes artifacts into the user's project, not here)
 card-news/
+
+.axt-profile.json
+.claude/
+
+# superpowers (auto-installed; do not track)
+.superpowers/
+docs/superpowers/
+
+# >>> skill-artifacts (auto; do not commit skill-generated output)
+.DS_Store
+/runs/
+/output/
+/outputs/
+/out/
+/generated/
+/.tmp/
+/tmp/
+__pycache__/
+.pytest_cache/
+*-run/
+*-runs/
+*-output/
+# <<< skill-artifacts
+/examples/
