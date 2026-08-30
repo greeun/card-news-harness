@@ -79,7 +79,7 @@ ln -s "$(pwd)/card-news-harness" ~/.claude/skills/card-news-harness
 렌더 의존성 설치(최초 1회):
 
 ```bash
-npm install --prefix card-news-harness/scripts
+pnpm install --prefix card-news-harness/scripts
 npx playwright install chromium      # 최초 1회 — chromium 다운로드
 ```
 

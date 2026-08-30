@@ -79,7 +79,7 @@ ln -s "$(pwd)/card-news-harness" ~/.claude/skills/card-news-harness
 Install the renderer dependencies (one-time):
 
 ```bash
-npm install --prefix card-news-harness/scripts
+pnpm install --prefix card-news-harness/scripts
 npx playwright install chromium      # first run only — downloads chromium
 ```
 

@@ -159,7 +159,7 @@ Generator가 Evaluator 패스 전에 내부적으로 도는 render→Evaluator-�
    Gmarket Sans는 사용자가 라이선스를 확인하기 전엔 **번들하지 않는다**.
 2. **Playwright chromium 최초 설치 안내.** 첫 실행은 `npx playwright install chromium`(대용량
    다운로드)가 필요하다. `render.mjs`와 본 SKILL이 렌더 전에 명확히 1회 안내한다. 스크립트
-   의존성 설치는 `npm install --prefix scripts`.
+   의존성 설치는 `pnpm install --prefix scripts`.
 3. **자동 게시 금지.** 인스타/스레드에 **게시하지 않고 스크래핑도 하지 않는다.** 최종 PNG 세트 +
    추천 캡션/해시태그 + 게시 체크리스트만 출력하고 **사용자가 수동 업로드**한다. 실시간
    스크래핑은 범위 외(ToS / 로그인 월 / 불안정).
@@ -251,9 +251,9 @@ Generator가 Evaluator 패스 전에 내부적으로 도는 render→Evaluator-�
 
 ## 10. 설치 메모
 
-- 리포 경로 `~/project/workspace/211-withwiz/claude-utils/claude-skills/card-news-harness/`에
-  두고 심링크: `ln -s "$(pwd)/card-news-harness" ~/.claude/skills/card-news-harness`.
-- 렌더 의존성(최초 1회): `npm install --prefix scripts` 후 `npx playwright install chromium`.
+- 이 저장소를 원하는 위치에 클론한 뒤, 저장소 루트에서 심링크로 활성화한다:
+  `ln -s "$(pwd)" ~/.claude/skills/card-news-harness`.
+- 렌더 의존성(최초 1회): `pnpm install --prefix scripts` 후 `npx playwright install chromium`.
 - 스모크 검증(설치 직후): 예시 번들 `examples/sample-run/`은 `.gitignore`로 배포에 포함되지 않으므로
   존재를 가정하지 않는다. 임시 카드를 즉석 생성해 렌더러를 확인한다 — `render.mjs`가 `assets/base.css`를
   주입하고 `.card`는 base.css 기본값(1080×1350)을 상속하므로 최소 카드 한 장이면 충분하다:
