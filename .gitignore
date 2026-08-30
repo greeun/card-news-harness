@@ -37,3 +37,8 @@ __pycache__/
 *-output/
 # <<< skill-artifacts
 /examples/
+
+# env files
+.env*
+!.env*.example
+!.env*.template

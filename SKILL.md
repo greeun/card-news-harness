@@ -10,6 +10,7 @@ description: >-
   카드뉴스 제작, 카드뉴스 디자인, 정보성 카드뉴스, 카드뉴스 템플릿, 캐러셀 카드.
   EN: card news, Korean card news, Instagram card news, carousel post,
   make a card news, carousel design, swipe post, Instagram carousel.
+version: 1.0.0
 ---
 
 # card-news-harness
@@ -253,5 +254,12 @@ Generator가 Evaluator 패스 전에 내부적으로 도는 render→Evaluator-�
 - 리포 경로 `~/project/workspace/211-withwiz/claude-utils/claude-skills/card-news-harness/`에
   두고 심링크: `ln -s "$(pwd)/card-news-harness" ~/.claude/skills/card-news-harness`.
 - 렌더 의존성(최초 1회): `npm install --prefix scripts` 후 `npx playwright install chromium`.
-- 샘플 검증: `node scripts/render.mjs --in examples/sample-run/cards --out examples/sample-run/out`
-  → 8장 모두 1080×1350 PNG가 나오면 환경 정상.
+- 스모크 검증(설치 직후): 예시 번들 `examples/sample-run/`은 `.gitignore`로 배포에 포함되지 않으므로
+  존재를 가정하지 않는다. 임시 카드를 즉석 생성해 렌더러를 확인한다 — `render.mjs`가 `assets/base.css`를
+  주입하고 `.card`는 base.css 기본값(1080×1350)을 상속하므로 최소 카드 한 장이면 충분하다:
+  ```bash
+  mkdir -p /tmp/cn-smoke/cards /tmp/cn-smoke/out
+  printf '<!doctype html><meta charset="utf-8"><div class="card"></div>' > /tmp/cn-smoke/cards/card-01.html
+  node scripts/render.mjs --in /tmp/cn-smoke/cards --out /tmp/cn-smoke/out
+  ```
+  → `/tmp/cn-smoke/out/card-01.png`가 1080×1350로 나오면 환경 정상.

@@ -58,7 +58,7 @@ async function loadPlaywright() {
     console.error(
       "\n[render.mjs] Could not load Playwright.\n" +
         "  Install it once in this skill's scripts/ folder:\n" +
-        "    npm install --prefix scripts\n" +
+        "    pnpm install --prefix scripts\n" +
         "  Then download the browser binary:\n" +
         "    npx playwright install chromium\n"
     );
